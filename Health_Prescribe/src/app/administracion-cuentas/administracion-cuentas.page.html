@@ -1,0 +1,49 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Administración de Cuentas</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Administración de Cuentas</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-card>
+    <ion-card-header>
+      Habilitar/Inhabilitar Cuentas
+    </ion-card-header>
+    <ion-card-content>
+      <ion-list>
+        <!-- Lista de cuentas de médicos -->
+        <ion-item-divider>
+          <ion-label>Médicos</ion-label>
+        </ion-item-divider>
+        <ion-item *ngFor="let medico of listaMedicos">
+          <ion-label>{{ medico.nombre }}</ion-label>
+          <ion-toggle [(ngModel)]="medico.habilitado" (ionChange)="cambiarEstadoCuenta(medico)"></ion-toggle>
+        </ion-item>
+
+        <!-- Lista de cuentas de pacientes -->
+        <ion-item-divider>
+          <ion-label>Pacientes</ion-label>
+        </ion-item-divider>
+        <ion-item *ngFor="let paciente of listaPacientes">
+          <ion-label>{{ paciente.nombre }}</ion-label>
+          <ion-toggle [(ngModel)]="paciente.habilitado" (ionChange)="cambiarEstadoCuenta(paciente)"></ion-toggle>
+        </ion-item>
+
+        <!-- Lista de cuentas de farmacéuticos -->
+        <ion-item-divider>
+          <ion-label>Farmacéuticos</ion-label>
+        </ion-item-divider>
+        <ion-item *ngFor="let farmaceutico of listaFarmaceuticos">
+          <ion-label>{{ farmaceutico.nombre }}</ion-label>
+          <ion-toggle [(ngModel)]="farmaceutico.habilitado" (ionChange)="cambiarEstadoCuenta(farmaceutico)"></ion-toggle>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

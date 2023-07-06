@@ -1,0 +1,11 @@
+--para crear el paquete wwww
+ionic build
+--crear cap android
+npx cap add android  
+--actualizar cap android
+npx cap sync android
+--abrir en android studio
+npx cap open android 
+--crear nueva pagina
+ionic generate page nombredenuevapagina
+

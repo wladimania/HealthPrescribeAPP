@@ -7,7 +7,6 @@
   </ion-toolbar>
 </ion-header>
 
-
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
@@ -28,14 +27,41 @@
 
   <ion-card>
     <ion-card-header>
-      Lista de Medicamentos
+      Datos del Paciente
     </ion-card-header>
     <ion-card-content>
-      <!-- Aquí se mostrará la lista de medicamentos de la receta -->
-      <!-- Puedes utilizar ngFor para iterar sobre la lista de medicamentos -->
+      <!-- Mostrar los datos del paciente -->
+      <ion-item>
+        <ion-label>Paciente:</ion-label>
+        <ion-label>{{ paciente.nombre }}</ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-label>Edad:</ion-label>
+        <ion-label>{{ paciente.edad }}</ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-label>Género:</ion-label>
+        <ion-label>{{ paciente.genero }}</ion-label>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header>
+      Receta Generada
+    </ion-card-header>
+    <ion-card-content>
+      <!-- Mostrar el nombre del médico -->
+      <ion-item>
+        <ion-label>Médico:</ion-label>
+        <ion-label>{{ medico.nombre }}</ion-label>
+      </ion-item>
+      <!-- Mostrar la lista de medicamentos de la receta -->
       <ion-list>
-        <ion-item >
-          
+        <ion-item *ngFor="let medicamento of listaMedicamentos">
+          <ion-label>{{ medicamento.nombre }}</ion-label>
+          <ion-label>Cantidad: {{ medicamento.cantidad }}</ion-label>
+          <ion-label>Concentración: {{ medicamento.concentracion }}</ion-label>
         </ion-item>
       </ion-list>
       <ion-button expand="full">Entregar Lista</ion-button>

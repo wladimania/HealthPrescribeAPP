@@ -1,0 +1,85 @@
+-- Tabla: Usuarios
+CREATE TABLE Usuarios (
+  id_usuario SERIAL PRIMARY KEY,
+  nombre_usuario VARCHAR(100) NOT NULL,
+  contraseña VARCHAR(100) NOT NULL,
+  tipo_usuario VARCHAR(20) NOT NULL,
+  habilitado BOOLEAN DEFAULT true
+);
+
+-- Tabla: Personas
+CREATE TABLE Personas (
+  id_persona SERIAL PRIMARY KEY,
+  nombre VARCHAR(100) NOT NULL,
+  apellido VARCHAR(100) NOT NULL,
+  edad INTEGER,
+  genero VARCHAR(10),
+  id_usuarios INTEGER REFERENCES Usuarios(id_usuario),
+  id_rol INTEGER REFERENCES Roles(id_rol)
+);
+
+-- Tabla: Paciente
+CREATE TABLE Paciente (
+  id_paciente INTEGER PRIMARY KEY,
+  id_persona INTEGER REFERENCES Personas(id_persona),
+  telefono VARCHAR(20),
+  habilitado BOOLEAN DEFAULT true
+);
+
+-- Tabla: Medico
+CREATE TABLE Medico (
+  id_medico INTEGER PRIMARY KEY,
+  id_persona INTEGER REFERENCES Personas(id_persona),
+  especialidad VARCHAR(100),
+  habilitado BOOLEAN DEFAULT true
+);
+
+
+-- Tabla: Farmaceutico
+CREATE TABLE Farmaceutico (
+  id_farmaceutico INTEGER PRIMARY KEY,
+  id_persona INTEGER REFERENCES Personas(id_persona),
+  habilitado BOOLEAN DEFAULT true
+);
+
+-- Tabla: Roles
+CREATE TABLE Roles (
+  id_rol SERIAL PRIMARY KEY,
+  nombre VARCHAR(20) NOT NULL
+);
+
+-- Insertar registros en la tabla Roles
+INSERT INTO Roles (nombre) VALUES
+  ('Medico'),
+  ('Farmaceutico'),
+  ('Paciente');
+-- Tabla: Medicamento
+CREATE TABLE Medicamento (
+  id_medicamento SERIAL PRIMARY KEY,
+  nombre VARCHAR(100) NOT NULL,
+  cantidad INTEGER,
+  concentracion VARCHAR(50),
+  laboratorio VARCHAR(100),
+  proveedor VARCHAR(100)
+);
+
+-- Tabla: Receta
+CREATE TABLE Receta (
+  id_receta SERIAL PRIMARY KEY,
+  paciente_id INTEGER REFERENCES Paciente(id_paciente),
+  medico_id INTEGER REFERENCES Medico(id_medico),
+  fecha DATE,
+  habilitada BOOLEAN DEFAULT true
+);
+
+-- Tabla: DetalleReceta
+CREATE TABLE DetalleReceta (
+  id_detalle_receta SERIAL PRIMARY KEY,
+  receta_id INTEGER REFERENCES Receta(id_receta),
+  medicamento_id INTEGER REFERENCES Medicamento(id_medicamento),
+  cantidad INTEGER,
+  indicaciones TEXT
+);
+
+ALTER TABLE Paciente
+ADD COLUMN huella_dactilar BYTEA;
