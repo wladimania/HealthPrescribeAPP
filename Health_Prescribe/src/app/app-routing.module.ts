@@ -14,6 +14,22 @@ const routes: Routes = [
   {
     path: 'login',
     loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
+  },
+  {
+    path: 'generar-receta',
+    loadChildren: () => import('./generar-receta/generar-receta.module').then( m => m.GenerarRecetaPageModule)
+  },
+  {
+    path: 'mostrar-receta',
+    loadChildren: () => import('./mostrar-receta/mostrar-receta.module').then( m => m.MostrarRecetaPageModule)
+  },
+  {
+    path: 'inventario',
+    loadChildren: () => import('./inventario/inventario.module').then( m => m.InventarioPageModule)
+  },
+  {
+    path: 'entregar-receta',
+    loadChildren: () => import('./entregar-receta/entregar-receta.module').then( m => m.EntregarRecetaPageModule)
   }
 ];
 

@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Blank
+      Menu
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -9,12 +9,26 @@
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
+      <ion-title size="large">Menu</ion-title>
     </ion-toolbar>
   </ion-header>
 
   <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+    <ion-button expand="full" fill="clear" [routerLink]="'/generar-receta'" routerDirection="root">
+      <ion-icon name="create"></ion-icon>
+      Generar Receta
+    </ion-button>
+    <ion-button expand="full" fill="clear" [routerLink]="'/mostrar-receta'" routerDirection="root">
+      <ion-icon name="document-text"></ion-icon>
+      Mostrar Receta
+    </ion-button>
+    <ion-button expand="full" fill="clear" [routerLink]="'/inventario'" routerDirection="root">
+      <ion-icon name="list"></ion-icon>
+      Inventario
+    </ion-button>
+    <ion-button expand="full" fill="clear" [routerLink]="'/entregar-receta'" routerDirection="root">
+      <ion-icon name="paper-plane"></ion-icon>
+      Entregar Receta
+    </ion-button>
   </div>
 </ion-content>

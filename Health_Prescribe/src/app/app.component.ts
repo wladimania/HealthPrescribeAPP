@@ -7,4 +7,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   constructor() {}
+  public pages = [
+    { title: 'Generar Receta', url: '/generar-receta' },
+    { title: 'Mostrar Receta', url: '/mostrar-receta' },
+    { title: 'Inventario', url: '/inventario' },
+    { title: 'Entregar Receta', url: '/entregar-receta' }
+  ];
 }
