@@ -9,3 +9,8 @@ npx cap open android
 --crear nueva pagina
 ionic generate page nombredenuevapagina
 
+python -m venv myenv
+pip install Flask
+pip install psycopg2
+--ejecutar backend
+python app.py
