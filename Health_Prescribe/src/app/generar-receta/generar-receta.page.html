@@ -1,6 +1,6 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>generar-receta</ion-title>
+    <ion-title>Generar Receta</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -10,4 +10,43 @@
       <ion-title size="large">generar-receta</ion-title>
     </ion-toolbar>
   </ion-header>
+
+  <ion-card>
+    <ion-card-header>
+      Búsqueda del Paciente
+    </ion-card-header>
+    <ion-card-content>
+      <!-- Aquí puedes agregar los campos de búsqueda del paciente -->
+      <ion-input placeholder="Nombre del Paciente"></ion-input>
+      <ion-input placeholder="Apellido del Paciente"></ion-input>
+      <!-- Otros campos de búsqueda según tus necesidades -->
+      <ion-button expand="full">Buscar Paciente</ion-button>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header>
+      Agregar Medicamento
+    </ion-card-header>
+    <ion-card-content>
+      <!-- Aquí puedes agregar los campos para agregar un medicamento -->
+      <ion-input placeholder="Nombre del Medicamento"></ion-input>
+      <ion-input type="number" placeholder="Cantidad"></ion-input>
+      <ion-textarea placeholder="Descripción"></ion-textarea>
+      <!-- Otros campos según tus necesidades -->
+      <ion-button expand="full">Agregar Medicamento</ion-button>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header>
+      Verificación de Huella Dactilar
+    </ion-card-header>
+    <ion-card-content>
+      <!-- Aquí puedes agregar la solicitud de huella dactilar -->
+      <ion-button expand="full">Verificar Huella Dactilar</ion-button>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-button expand="full">Generar Receta</ion-button>
 </ion-content>

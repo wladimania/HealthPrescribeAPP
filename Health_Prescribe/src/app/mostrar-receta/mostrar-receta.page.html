@@ -1,6 +1,6 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>mostrar-receta</ion-title>
+    <ion-title>Visualizar Recetas</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -10,4 +10,22 @@
       <ion-title size="large">mostrar-receta</ion-title>
     </ion-toolbar>
   </ion-header>
+
+  <ion-card *ngFor="let receta of recetas" (click)="verDetalleReceta(receta)">
+    <ion-card-header>
+      Datos del Paciente: {{ receta.paciente }}
+    </ion-card-header>
+    <ion-card-content>
+      <ion-list>
+        <ion-item>
+          <ion-label>Fecha:</ion-label>
+          <ion-label>{{ receta.fecha }}</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>Médico:</ion-label>
+          <ion-label>{{ receta.medico }}</ion-label>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
 </ion-content>

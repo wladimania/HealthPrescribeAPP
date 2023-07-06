@@ -30,6 +30,22 @@ const routes: Routes = [
   {
     path: 'entregar-receta',
     loadChildren: () => import('./entregar-receta/entregar-receta.module').then( m => m.EntregarRecetaPageModule)
+  },
+  {
+    path: 'agregar-medicamento',
+    loadChildren: () => import('./agregar-medicamento/agregar-medicamento.module').then( m => m.AgregarMedicamentoPageModule)
+  },
+  {
+    path: 'detalle-medicamento',
+    loadChildren: () => import('./detalle-medicamento/detalle-medicamento.module').then( m => m.DetalleMedicamentoPageModule)
+  },
+  {
+    path: 'editar-medicamento',
+    loadChildren: () => import('./editar-medicamento/editar-medicamento.module').then( m => m.EditarMedicamentoPageModule)
+  },
+  {
+    path: 'detalle-receta',
+    loadChildren: () => import('./detalle-receta/detalle-receta.module').then( m => m.DetalleRecetaPageModule)
   }
 ];
 

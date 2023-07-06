@@ -1,6 +1,6 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>inventario</ion-title>
+    <ion-title>Inventario</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -10,4 +10,33 @@
       <ion-title size="large">inventario</ion-title>
     </ion-toolbar>
   </ion-header>
+
+  <!-- Botón para agregar nuevo medicamento -->
+  <ion-button expand="full" (click)="goToAddMedicamento()">Agregar Nuevo Medicamento</ion-button>
+
+  <ion-card>
+    <ion-card-header>
+      Lista de Medicamentos
+    </ion-card-header>
+    <ion-card-content>
+      <ion-list>
+        <!-- Aquí se muestra la lista de medicamentos -->
+        <ion-item *ngFor="let medicamento of listaMedicamentos" (click)="verDetalleMedicamento(medicamento)">
+          <ion-label>
+            <h2>{{ medicamento.nombre }}</h2>
+            <p>Cantidad: {{ medicamento.cantidad }}</p>
+            <p>Concentración: {{ medicamento.concentracion }}</p>
+            <p>Laboratorio: {{ medicamento.laboratorio }}</p>
+            <p>Proveedor: {{ medicamento.proveedor }}</p>
+          </ion-label>
+          <!-- Botones para editar y eliminar el medicamento -->
+          <ion-buttons slot="end">
+            <ion-button color="primary" (click)="editMedicamento(medicamento)">Editar</ion-button>
+            <ion-button color="danger" (click)="deleteMedicamento(medicamento)">Eliminar</ion-button>
+          </ion-buttons>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+
 </ion-content>

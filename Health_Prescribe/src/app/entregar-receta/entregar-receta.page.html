@@ -1,6 +1,6 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>entregar-receta</ion-title>
+    <ion-title>Entregar Receta</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -10,4 +10,42 @@
       <ion-title size="large">entregar-receta</ion-title>
     </ion-toolbar>
   </ion-header>
+
+  <ion-card>
+    <ion-card-header>
+      Ingrese el Código de la Receta
+    </ion-card-header>
+    <ion-card-content>
+      <!-- Campo para ingresar el código de la receta -->
+      <ion-input placeholder="Código de la Receta"></ion-input>
+      <ion-button expand="full">Buscar Receta</ion-button>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header>
+      Lista de Medicamentos
+    </ion-card-header>
+    <ion-card-content>
+      <!-- Aquí se mostrará la lista de medicamentos de la receta -->
+      <!-- Puedes utilizar ngFor para iterar sobre la lista de medicamentos -->
+      <ion-list>
+        <ion-item >
+          
+        </ion-item>
+      </ion-list>
+      <ion-button expand="full">Entregar Lista</ion-button>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header>
+      Verificación de Huella Dactilar
+    </ion-card-header>
+    <ion-card-content>
+      <!-- Aquí puedes agregar la solicitud de verificación de huella dactilar -->
+      <ion-button expand="full">Verificar Huella Dactilar</ion-button>
+    </ion-card-content>
+  </ion-card>
+
 </ion-content>
