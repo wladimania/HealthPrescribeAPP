@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController } from '@ionic/angular';
 import { Medicamento } from 'src/app/modelos/Modelo';
+import {MedicamentoService} from "../../services/medicamento/medicamento.service";
 
 @Component({
   selector: 'app-inventario',
@@ -9,12 +10,27 @@ import { Medicamento } from 'src/app/modelos/Modelo';
 })
 export class InventarioPage {
   listaMedicamentos: Medicamento[] = [
-    { nombre: 'Medicamento 1', cantidad: 10, concentracion: '5mg', laboratorio: 'Laboratorio A', proveedor: 'Proveedor A' },
+    /*{ nombre: 'Medicamento 1', cantidad: 10, concentracion: '5mg', laboratorio: 'Laboratorio A', proveedor: 'Proveedor A' },
     { nombre: 'Medicamento 2', cantidad: 5, concentracion: '10mg', laboratorio: 'Laboratorio B', proveedor: 'Proveedor B' },
-    { nombre: 'Medicamento 3', cantidad: 8, concentracion: '20mg', laboratorio: 'Laboratorio C', proveedor: 'Proveedor C' },
+    { nombre: 'Medicamento 3', cantidad: 8, concentracion: '20mg', laboratorio: 'Laboratorio C', proveedor: 'Proveedor C' },*/
   ];
 
-  constructor(private navCtrl: NavController) {}
+  constructor(private navCtrl: NavController,
+              public medicamentoService: MedicamentoService) {}
+
+  ngOnInit() {
+
+    this.medicamentoService.getMedicamentos().subscribe({
+      next: (data: Medicamento[]) => {
+        console.log('getMedicamentos ', data);
+        this.listaMedicamentos = data;
+      },
+      error: (error) => {
+        console.log('ERROR getListaClientes: ', error);
+        console.log(error.error.text);
+      }
+    });
+  }
 
   editMedicamento(medicamento: Medicamento) {
     // Navegar a la vista de editar-medicamento con la información del medicamento seleccionado

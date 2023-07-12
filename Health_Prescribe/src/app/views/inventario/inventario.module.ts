@@ -7,14 +7,16 @@ import { IonicModule } from '@ionic/angular';
 import { InventarioPageRoutingModule } from './inventario-routing.module';
 
 import { InventarioPage } from './inventario.page';
-
+import { HttpClientModule } from '@angular/common/http';
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    InventarioPageRoutingModule
+    InventarioPageRoutingModule,
+    HttpClientModule
   ],
   declarations: [InventarioPage]
+
 })
 export class InventarioPageModule {}
