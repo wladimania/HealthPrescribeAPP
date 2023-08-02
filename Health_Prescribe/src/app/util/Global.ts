@@ -29,6 +29,7 @@ export class Global {
     return Object.keys(data).length;
   }
 
+  
   public static isNullOrUndefined(data: any): boolean {
     return data === null || data === undefined;
   }
