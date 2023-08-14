@@ -5,9 +5,6 @@ export interface Login {
 
 export interface AuthObject {
   persona?: Personas;
-  cliente?: Cliente;
-  farmaceutico?: Farmaceutico;
-  medico?: Medico;
 }
 
 export interface Medicamento {

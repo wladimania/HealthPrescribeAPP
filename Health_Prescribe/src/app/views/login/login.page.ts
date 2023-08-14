@@ -16,7 +16,7 @@ export class LoginPage implements OnInit, AfterViewInit  {
   password: string = '';
 
   constructor(private router: Router,
-              private medicamentoService: LoginService,
+              private loginService: LoginService,
               private toastController: ToastController) {}
 
   ngOnInit(): void {
@@ -33,7 +33,7 @@ export class LoginPage implements OnInit, AfterViewInit  {
     };
 
     // Llama al servicio de inicio de sesión para autenticar al usuario
-    this.medicamentoService.login(loginData).subscribe(
+    this.loginService.login(loginData).subscribe(
       (response) => {
         // Aquí puedes realizar acciones después de una autenticación exitosa,
         // como almacenar información del usuario en el almacenamiento local
@@ -43,6 +43,8 @@ export class LoginPage implements OnInit, AfterViewInit  {
         // localStorage.setItem('authToken', response.token);
 
         // Redirige al usuario a la página de inicio
+        console.log('datos de usuario', response);
+        this.loginService.setDataUser(response);
         this.router.navigate(['/home']);
       },
       (error) => {

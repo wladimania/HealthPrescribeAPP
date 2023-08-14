@@ -13,12 +13,12 @@
       <ion-card-content>
         <ion-item>
           <ion-label position="floating">Nombre de usuario</ion-label>
-          <ion-input type="email" [(ngModel)]="username" ></ion-input>
+          <ion-input type="email" name="username" [(ngModel)]="username" ></ion-input>
         </ion-item>
 
         <ion-item>
-          <ion-label position="floating" [(ngModel)]="username" >Contraseña</ion-label>
-          <ion-input type="password" [(ngModel)]="password" ></ion-input>
+          <ion-label position="floating" >Contraseña</ion-label>
+          <ion-input type="password" name="password" [(ngModel)]="password" ></ion-input>
         </ion-item>
 
         <ion-button expand="full" color="primary" (click)="login()">Iniciar Sesión</ion-button>

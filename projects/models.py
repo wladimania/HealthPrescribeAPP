@@ -9,12 +9,14 @@ class Usuarios(models.Model):
     class Meta:
         managed = False
         db_table = 'usuarios'
+
 class Roles(models.Model):
     id_rol = models.AutoField(primary_key=True)
     nombre = models.CharField(max_length=20)
     class Meta:
         managed = False
         db_table = 'roles'
+
 class Personas(models.Model):
     id_persona = models.AutoField(primary_key=True)
     nombre = models.CharField(max_length=100)
@@ -26,6 +28,7 @@ class Personas(models.Model):
     class Meta:
         managed = False
         db_table = 'personas'
+
 class Paciente(models.Model):
     id_paciente = models.IntegerField(primary_key=True)
     persona = models.ForeignKey('personas', models.DO_NOTHING, db_column='id_persona', blank=True, null=True)
@@ -35,6 +38,7 @@ class Paciente(models.Model):
     class Meta:
         managed = False
         db_table = 'paciente'
+
 class Medico(models.Model):
     id_medico = models.IntegerField(primary_key=True)
     persona = models.ForeignKey('personas', models.DO_NOTHING, db_column='id_persona', blank=True, null=True)
@@ -43,6 +47,7 @@ class Medico(models.Model):
     class Meta:
         managed = False
         db_table = 'medico'
+
 class Farmaceutico(models.Model):
     id_farmaceutico = models.IntegerField(primary_key=True)
     persona = models.ForeignKey('personas', models.DO_NOTHING, db_column='id_persona', blank=True, null=True)
@@ -61,6 +66,7 @@ class Medicamento(models.Model):
     class Meta:
         managed = False
         db_table = 'medicamento'
+
 class Receta(models.Model):
     id_receta = models.AutoField(primary_key=True)
     paciente = models.ForeignKey('paciente', models.DO_NOTHING, db_column='paciente_id', blank=True, null=True)
@@ -70,6 +76,7 @@ class Receta(models.Model):
     class Meta:
         managed = False
         db_table = 'receta'
+
 class DetalleReceta(models.Model):
     id_detalle_receta = models.AutoField(primary_key=True)
     receta = models.ForeignKey('receta', models.DO_NOTHING, db_column='receta_id', blank=True, null=True)

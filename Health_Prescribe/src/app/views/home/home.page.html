@@ -1,23 +1,50 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button auto-hide="false"></ion-menu-button>
+    </ion-buttons>
     <ion-title>
       Menu
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Menu</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<!--<ion-content [fullscreen]="true">-->
+<!--  <ion-header collapse="condense">-->
+<!--    <ion-toolbar>-->
+<!--      <ion-title size="large">Menu</ion-title>-->
+<!--    </ion-toolbar>-->
+<!--  </ion-header>-->
 
-  <div id="container">
-    <ion-button *ngFor="let vista of model[0].item" expand="full" fill="clear" [routerLink]="vista.routerLink" routerDirection="root">
-      <ion-icon name="document-text" size="large"></ion-icon>
-      {{vista.label}}
-    </ion-button>
-  </div>
+<!--  <div id="container">-->
+<!--    {{model[0].label}}-->
+<!--    <ion-button *ngFor="let vista of model[0].items" expand="full" fill="clear" [routerLink]="vista.routerLink" routerDirection="root">-->
+<!--      <ion-icon name="document-text" size="large"></ion-icon>-->
+<!--      {{vista.label}}-->
+<!--    </ion-button>-->
+<!--  </div>-->
 
-</ion-content>
+<!--</ion-content>-->
+
+<ion-menu side="start" contentId="main-content">
+  <ion-content>
+    <ion-card>
+      <ion-card-header>
+        <ion-avatar>
+          <ion-img src="URL_DEL_AVATAR"></ion-img>
+        </ion-avatar>
+        <ion-card-title>{{ obtenerNombrePesona() }}</ion-card-title>
+        <ion-card-subtitle>{{ model[0].label }}</ion-card-subtitle>
+      </ion-card-header>
+    </ion-card>
+
+    <ion-list>
+      <ion-item *ngFor="let vista of model[0].items" (click)="navigateTo(vista.routerLink)">
+        <ion-icon name="home"></ion-icon>
+        <ion-label>{{vista.label}}</ion-label>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-menu>
+
+<ion-router-outlet id="main-content"></ion-router-outlet>

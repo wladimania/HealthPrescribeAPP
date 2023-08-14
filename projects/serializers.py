@@ -5,6 +5,7 @@ class RolesSerializer(serializers.ModelSerializer):
     class Meta:
         model = Roles
         fields = '__all__'
+
 class UsuariosSerializer(serializers.ModelSerializer):
     class Meta:
         model = Usuarios
@@ -12,7 +13,7 @@ class UsuariosSerializer(serializers.ModelSerializer):
 
 class PersonasSerializer(serializers.ModelSerializer):
     usuarios = UsuariosSerializer()
-
+    roles = RolesSerializer()
     class Meta:
         model = Personas
         fields = '__all__'
@@ -76,6 +77,7 @@ class DetalleRecetaSerializer(serializers.ModelSerializer):
     class Meta:
         model = DetalleReceta
         fields = '__all__'
+
 class LoginSerializer(serializers.Serializer):
     nombre_usuario = serializers.CharField()
     clave = serializers.CharField()
