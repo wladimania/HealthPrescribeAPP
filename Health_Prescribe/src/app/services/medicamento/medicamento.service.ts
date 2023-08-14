@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import {Global} from "../../util/Global";
-import {Medicamento} from "../../modelos/Modelo";
+import {InserMedicamento, Medicamento} from "../../modelos/Modelo";
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +18,7 @@ export class MedicamentoService {
     return this.http.get(this.URL_SERVER + this.basic_Schema + 'medicamento/');
   }
 
-  public insertMedicamentos(data: Medicamento): Observable<any> {
+  public insertMedicamentos(data: InserMedicamento): Observable<any> {
     return this.http.post(this.URL_SERVER + this.basic_Schema + 'medicamento/', data);
   }
   public updateMedicamentos(idMedicamento: number, data: Medicamento): Observable<any> {

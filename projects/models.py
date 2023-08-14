@@ -22,7 +22,7 @@ class Personas(models.Model):
     edad = models.IntegerField(null=True)
     genero = models.CharField(max_length=10, blank=True)
     usuarios = models.ForeignKey('usuarios', models.DO_NOTHING, db_column='id_usuarios', blank=True, null=True)
-    roles = models.ForeignKey('roles', models.DO_NOTHING, db_column='id_rol', blank=True, null=True)
+    roles = models.ForeignKey('Roles', models.DO_NOTHING, db_column='id_rol', blank=True, null=True)
     class Meta:
         managed = False
         db_table = 'personas'

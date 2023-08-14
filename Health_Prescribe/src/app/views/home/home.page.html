@@ -14,22 +14,10 @@
   </ion-header>
 
   <div id="container">
-    <ion-button expand="full" fill="clear" [routerLink]="'/generar-receta'" routerDirection="root">
-      <ion-icon name="create" size="large"></ion-icon>
-      Generar Receta
-    </ion-button>
-    <ion-button expand="full" fill="clear" [routerLink]="'/mostrar-receta'" routerDirection="root">
+    <ion-button *ngFor="let vista of model[0].item" expand="full" fill="clear" [routerLink]="vista.routerLink" routerDirection="root">
       <ion-icon name="document-text" size="large"></ion-icon>
-      Mostrar Receta
-    </ion-button>
-    <ion-button expand="full" fill="clear" [routerLink]="'/inventario'" routerDirection="root">
-      <ion-icon name="list" size="large"></ion-icon>
-      Inventario
-    </ion-button>
-    <ion-button expand="full" fill="clear" [routerLink]="'/entregar-receta'" routerDirection="root">
-      <ion-icon name="paper-plane" size="large"></ion-icon>
-      Entregar Receta
+      {{vista.label}}
     </ion-button>
   </div>
-  
+
 </ion-content>

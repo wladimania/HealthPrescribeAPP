@@ -8,10 +8,12 @@ from .api import (
     RolesViewSet,
     MedicamentoViewSet,
     RecetaViewSet,
-    DetalleRecetaViewSet
+    DetalleRecetaViewSet,
+    LoginViewSet
 )
 
 router = routers.DefaultRouter()
+router.register('api/login', LoginViewSet, 'login-list')
 router.register('api/personas', PersonasViewSet, 'personas-list')
 router.register('api/usuarios', UsuariosViewSet, 'usuarios-list')
 router.register('api/paciente', PacienteViewSet, 'paciente-list')

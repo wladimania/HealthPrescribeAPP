@@ -18,7 +18,13 @@ export interface Medicamento {
   laboratorio: string;
   proveedor: string;
 }
-
+export interface InserMedicamento {
+  nombre: string;
+  cantidad: number;
+  concentracion: string;
+  laboratorio: string;
+  proveedor: string;
+}
 export interface Usuarios {
   id_usuario: number;
   nombre_usuario: string;

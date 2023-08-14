@@ -12,27 +12,38 @@ class UsuariosSerializer(serializers.ModelSerializer):
 
 class PersonasSerializer(serializers.ModelSerializer):
     usuarios = UsuariosSerializer()
-    #roles = RolesSerializer()
 
     class Meta:
         model = Personas
         fields = '__all__'
 
+    def update(self, instance, validated_data):
+        usuarios_data = validated_data.pop('usuarios')
+        usuarios_serializer = UsuariosSerializer(instance.usuarios, data=usuarios_data)
+        if usuarios_serializer.is_valid():
+            usuarios_serializer.save()
+
+        instance.nombre = validated_data.get('nombre', instance.nombre)
+        instance.apellido = validated_data.get('apellido', instance.apellido)
+        instance.edad = validated_data.get('edad', instance.edad)
+        instance.genero = validated_data.get('genero', instance.genero)
+        instance.roles=validated_data.get("roles",instance.roles)
+        instance.save()
+
+        return instance
+
     def create(self, validated_data):
         usuarios_data = validated_data.pop('usuarios')
         usuarios = Usuarios.objects.create(**usuarios_data)
-
-        # Verificamos si el campo 'roles' está presente en los datos validados
-        if 'roles' in validated_data:
-            roles_data = validated_data.pop('roles')
+        personas = Personas.objects.create(usuarios=usuarios, **validated_data)
+        roles_data = validated_data.pop('Roles', None)
+        if roles_data:
             roles, _ = Roles.objects.get_or_create(**roles_data)
-        else:
-            # Si el campo 'roles' no está presente, asignamos 'None' a la relación
-            roles = None
-
-        personas = Personas.objects.create(usuarios=usuarios, roles=roles, **validated_data)
+            personas.roles = roles
+            personas.save()
 
         return personas
+
 
 
 
@@ -65,3 +76,21 @@ class DetalleRecetaSerializer(serializers.ModelSerializer):
     class Meta:
         model = DetalleReceta
         fields = '__all__'
+class LoginSerializer(serializers.Serializer):
+    nombre_usuario = serializers.CharField()
+    clave = serializers.CharField()
+
+    def validate(self, data):
+        nombre_usuario = data.get('nombre_usuario')  # Cambio aquí
+        clave = data.get('clave')
+
+        try:
+            usuario = Usuarios.objects.get(nombre_usuario=nombre_usuario)  # Cambio aquí
+        except Usuarios.DoesNotExist:
+            raise serializers.ValidationError('El usuario no existe.')
+
+        if clave != usuario.clave:
+            raise serializers.ValidationError('Contraseña incorrecta.')
+
+        return data
+
