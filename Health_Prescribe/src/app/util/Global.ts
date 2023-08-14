@@ -17,10 +17,10 @@ export class Global {
   *  permisos de interfaces de acuerdo a los roles
   * */
 
-  public static vistasCliente = ['receta-view-paciente', 'receta-list-paciente'];
-  public static vistasMedico = ['receta-create', 'receta-list-medico', 'receta-view-medico'];
-  public static vistasFarmaceutico = ['receta-view-farmaceutico', 'farmaco-crud-farmaceutico'];
-  public static vistasAdministrador = [];
+  public static vistasCliente = ['mostrar-receta', 'detalle-receta'];
+  public static vistasMedico = ['generar-receta', 'mostrar-receta', 'detalle-receta'];
+  public static vistasFarmaceutico = ['mostrar-receta', 'inventario','entregar-receta','agregar-medicamento','detalle-medicamento','editar-medicamento','detalle-receta'];
+  public static vistasAdministrador = ['administracion-cuentas'];
 
   /* eventos generales */
   public static contarClaves(data: any): number {
