@@ -1,4 +1,5 @@
 import {DatePipe} from "@angular/common";
+import {ToastController} from "@ionic/angular";
 
 export class Global {
 
@@ -29,7 +30,7 @@ export class Global {
     return Object.keys(data).length;
   }
 
-  
+
   public static isNullOrUndefined(data: any): boolean {
     return data === null || data === undefined;
   }
@@ -61,4 +62,25 @@ export class Global {
       return datePipe.transform(tmpDate, 'yyy-MM-dd hh:mm:ss')!;
     }
   }
+
+  public static async mostrarAlert(toastController: ToastController) {
+    const toast = await toastController.create({
+      message: 'Este es un mensaje de alerta con estilo',
+      duration: 2000,
+      position: 'bottom',
+      color: 'danger', // Cambia el color (primary, secondary, success, warning, danger)
+      buttons: [
+        {
+          text: 'Cerrar',
+          role: 'cancel',
+          handler: () => {
+            console.log('Toast cerrado');
+          }
+        }
+      ],
+      cssClass: 'my-toast' // Clase CSS personalizada para aplicar estilos adicionales
+    });
+    toast.present();
+  }
+
 }

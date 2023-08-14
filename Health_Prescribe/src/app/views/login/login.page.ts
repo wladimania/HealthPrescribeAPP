@@ -1,18 +1,30 @@
-import { Component } from '@angular/core';
+import {AfterViewInit, Component, OnInit} from '@angular/core';
 import { Router } from '@angular/router';
 import {LoginService} from '../../services/login/login.service';
 import { Login } from '../../modelos/Modelo';
+import {ToastController} from "@ionic/angular";
+import {Global} from "../../util/Global";
 
 @Component({
   selector: 'app-login',
   templateUrl: 'login.page.html',
   styleUrls: ['login.page.scss'],
 })
-export class LoginPage {
+export class LoginPage implements OnInit, AfterViewInit  {
+
   username: string = '';
   password: string = '';
 
-  constructor(private router: Router, private medicamentoService: LoginService) {}
+  constructor(private router: Router,
+              private medicamentoService: LoginService,
+              private toastController: ToastController) {}
+
+  ngOnInit(): void {
+  }
+
+  ngAfterViewInit(): void {
+    Global.mostrarAlert(this.toastController);
+  }
 
   login() {
     const loginData: Login = {
@@ -36,6 +48,15 @@ export class LoginPage {
       (error) => {
         // Aquí puedes manejar el caso de autenticación fallida
         console.error('Error al iniciar sesión:', error);
+        console.error('Error al iniciar sesión:', error.error.non_field_errors);
+        const toast = this.toastController.create({
+          message: 'Este es un mensaje de alerta',
+          duration: 2000, // Duración en milisegundos
+          position: 'bottom' // Posición del toast (top, middle, bottom)
+        });
+        toast.then((to)=>{
+          to.present();
+        });
       }
     );
   }

@@ -2,7 +2,7 @@ from django.db import models
 
 class Usuarios(models.Model):
     id_usuario = models.AutoField(primary_key=True)
-    nombre_usuario = models.CharField(max_length=100)
+    nombre_usuario = models.CharField(max_length=100, unique=True, error_messages={'unique': 'Este nombre ya está en uso.'})
     clave = models.CharField(max_length=100)
     tipo_usuario = models.CharField(max_length=20)
     habilitado = models.BooleanField(default=True)

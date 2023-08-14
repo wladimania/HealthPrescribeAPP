@@ -12,7 +12,8 @@ from .serializers import (
     MedicamentoSerializer,
     RecetaSerializer,
     DetalleRecetaSerializer,
-    LoginSerializer
+    LoginSerializer,
+    serializers
 )
 
 class UsuariosViewSet(viewsets.ModelViewSet):
@@ -59,6 +60,7 @@ class DetalleRecetaViewSet(viewsets.ModelViewSet):
     queryset = DetalleReceta.objects.all()
     permission_classes = [permissions.AllowAny]
     serializer_class = DetalleRecetaSerializer
+
 class LoginViewSet(viewsets.ModelViewSet):
     serializer_class = LoginSerializer
     queryset = []
@@ -84,7 +86,7 @@ class LoginViewSet(viewsets.ModelViewSet):
             raise serializers.ValidationError('No se encontraron datos de la persona asociada al usuario.')
 
         rol = persona.roles.id_rol
-        persona_serializer = PersonaSerializer(persona)
+        persona_serializer = PersonasSerializer(persona)
 
         role_handlers = {
             1: self.handle_farmaceutico,
