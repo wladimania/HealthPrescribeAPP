@@ -46,6 +46,6 @@ export class MostrarRecetaPage {
 
   verDetalleReceta(receta: any) {
     // Navegar a la vista de detalle-receta pasando la receta como parámetro
-    this.router.navigate(['/detalle-receta'], { state: { receta } });
+    this.router.navigate(['/home/detalle-receta'], { state: { receta } });
   }
 }

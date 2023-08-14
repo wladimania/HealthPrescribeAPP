@@ -19,9 +19,9 @@ export class LoginService {
 
   public setDataUser(data: AuthObject) {
     console.log('sessionExists ', this.sessionExists());
-    if(!this.sessionExists()) {
+    //if(!this.sessionExists()) {
       localStorage.setItem(Global.userKey, JSON.stringify(data));
-    }
+    //}
   }
 
   public getDataUser(): AuthObject {

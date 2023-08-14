@@ -5,3 +5,9 @@ HealthPrescribeAPP
 projects/__pycache__/
 projects/migrations/
 health_prescriberest/__pycache__/
+projects/__pycache__/models.cpython-311.pyc
+projects/__pycache__/api.cpython-311.pyc
+projects/__pycache__/api.cpython-311.pyc
+projects/__pycache__/models.cpython-311.pyc
+projects/__pycache__/serializers.cpython-311.pyc
+projects/__pycache__/urls.cpython-311.pyc

@@ -9,8 +9,9 @@ export class Global {
   * */
   public static userKey = 'userData';
 
-  public static rolFarmaceutico = 1;
-  public static rolMedico = 2;
+
+  public static rolMedico = 1;
+  public static rolFarmaceutico = 2;
   public static rolCliente = 3;
   // public static rolAdministrador = 4;
 
