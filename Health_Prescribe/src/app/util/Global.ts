@@ -63,18 +63,18 @@ export class Global {
     }
   }
 
-  public static async mostrarAlert(toastController: ToastController) {
+  public static async mostrarAlert(toastController: ToastController, status: GlobalStatus, mensaje: string) {
     const toast = await toastController.create({
-      message: 'Este es un mensaje de alerta con estilo',
+      message: mensaje,
       duration: 2000,
       position: 'bottom',
-      color: 'danger', // Cambia el color (primary, secondary, success, warning, danger)
+      color: status, // Cambia el color (primary, secondary, success, warning, danger)
       buttons: [
         {
           text: 'Cerrar',
           role: 'cancel',
           handler: () => {
-            console.log('Toast cerrado');
+            // console.log('Toast cerrado');
           }
         }
       ],
@@ -83,4 +83,12 @@ export class Global {
     toast.present();
   }
 
+}
+
+export enum GlobalStatus {
+  primary = "primary",
+  secondary = "secondary",
+  success = "success",
+  warning = "warning",
+  danger = "danger"
 }

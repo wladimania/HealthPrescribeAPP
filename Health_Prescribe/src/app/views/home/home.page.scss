@@ -26,33 +26,21 @@
   text-decoration: none;
 }
 
-.menu-card {
-  //background-color: #f4f4f4; /* Cambia el color de fondo a tu preferencia */
-  margin-bottom: 10px; /* Agrega margen inferior para separarlo del listado */
-}
-
-.background-image {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: url('/assets/shapes.svg');
-  background-size: cover; /* Ajusta el tamaño de la imagen para cubrir todo el contenedor */
-  background-position: center; /* Centra la imagen de fondo */
-  opacity: 0.25; /* Ajusta la opacidad de la imagen según tus preferencias */
-  z-index: -1; /* Coloca la imagen de fondo detrás del contenido del card */
-}
-
-.avatar-container {
+.cerrar-sesion {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: white; /* Color de fondo del avatar */
-  width: 100px; /* Ajusta el ancho según tus necesidades */
-  height: 100px; /* Ajusta la altura según tus necesidades */
-  border-radius: 50%; /* Hace que el avatar sea circular */
-  overflow: hidden;
-  margin: 0 auto; /* Centra el avatar horizontalmente */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Agrega sombra */
+  padding: 15px;
+}
+
+ion-menu {
+  ion-content {
+    height: 100%;
+  }
+}
+
+ion-footer {
+  ion-item {
+    padding: 0px!important;
+  }
 }

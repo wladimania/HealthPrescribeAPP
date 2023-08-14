@@ -13,6 +13,7 @@ import { MedicamentoService } from './services/medicamento/medicamento.service';
   declarations: [AppComponent],
   imports: [
     BrowserModule,
+    IonicModule,
     IonicModule.forRoot(),
     AppRoutingModule,
     HttpClientModule, // Agregar HttpClientModule aquí

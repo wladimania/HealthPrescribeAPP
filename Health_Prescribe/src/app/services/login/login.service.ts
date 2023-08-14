@@ -56,12 +56,8 @@ export class LoginService {
 
   public havePrivilege(privilege: number): boolean {
     const account: AuthObject = this.getDataUser();
-    console.log('paso 1: ' + privilege);
     if (account) {
-      console.log('paso 2');
       if (!Global.isNullOrUndefined(account.persona)) {
-        console.log('paso 3');
-        console.log('rol ', account.persona!.roles.id_rol  + '===' + privilege, (account.persona!.roles.id_rol === privilege));
         return (account.persona!.roles.id_rol === privilege);
       }
     }

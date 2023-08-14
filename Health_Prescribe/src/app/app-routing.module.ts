@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import {GenerarRecetaPage} from "./views/generar-receta/generar-receta.page";
+import {LoginPage} from "./views/login/login.page";
 
 const routes: Routes = [
   {

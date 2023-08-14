@@ -62,7 +62,7 @@ export class HomePage {
   }
 
   navigateTo(page: string) {
-    this.router.navigate([page]);
+    this.router.navigate(['/home' + page]);
   }
 
   obtenerNombrePesona() {
