@@ -1,11 +1,58 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-import { HomePage } from './home.page';
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
+import {HomePage} from './home.page';
+import {GenerarRecetaPage} from "../generar-receta/generar-receta.page";
+import {MostrarRecetaPage} from "../mostrar-receta/mostrar-receta.page";
+import {DetalleRecetaPage} from "../detalle-receta/detalle-receta.page";
+import {EditarMedicamentoPage} from "../editar-medicamento/editar-medicamento.page";
+import {InventarioPage} from "../inventario/inventario.page";
+import {EntregarRecetaPage} from "../entregar-receta/entregar-receta.page";
+import {AgregarMedicamentoPage} from "../agregar-medicamento/agregar-medicamento.page";
+import {DetalleMedicamentoPage} from "../detalle-medicamento/detalle-medicamento.page";
+import {AdministracionCuentasPage} from "../administracion-cuentas/administracion-cuentas.page";
 
 const routes: Routes = [
   {
     path: '',
     component: HomePage,
+    children: [
+      {
+        path: 'generar-receta',
+        component: GenerarRecetaPage
+      },
+      {
+        path: 'mostrar-receta',
+        component: MostrarRecetaPage
+      },
+      {
+        path: 'inventario',
+        component: InventarioPage
+      },
+      {
+        path: 'entregar-receta',
+        component: EntregarRecetaPage
+      },
+      {
+        path: 'agregar-medicamento',
+        component: AgregarMedicamentoPage
+      },
+      {
+        path: 'detalle-medicamento',
+        component: DetalleMedicamentoPage
+      },
+      {
+        path: 'editar-medicamento',
+        component: EditarMedicamentoPage
+      },
+      {
+        path: 'detalle-receta',
+        component: DetalleRecetaPage
+      },
+      {
+        path: 'administracion-cuentas',
+        component: AdministracionCuentasPage
+      }
+    ]
   }
 ];
 
@@ -13,4 +60,5 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class HomePageRoutingModule {}
+export class HomePageRoutingModule {
+}

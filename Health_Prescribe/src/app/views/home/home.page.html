@@ -28,20 +28,21 @@
 
 <ion-menu side="start" contentId="main-content">
   <ion-content>
-    <ion-card>
+    <ion-card class="menu-card margin-zero">
+      <div class="background-image"></div>
       <ion-card-header>
-        <ion-avatar>
-          <ion-img src="URL_DEL_AVATAR"></ion-img>
+        <ion-avatar class="avatar-container" >
+          <ion-img src="/assets/avatar_girl.png"></ion-img>
         </ion-avatar>
         <ion-card-title>{{ obtenerNombrePesona() }}</ion-card-title>
-        <ion-card-subtitle>{{ model[0].label }}</ion-card-subtitle>
+        <ion-card-subtitle color="dark" >{{ model[0].label }}</ion-card-subtitle>
       </ion-card-header>
     </ion-card>
 
     <ion-list>
       <ion-item *ngFor="let vista of model[0].items" (click)="navigateTo(vista.routerLink)">
-        <ion-icon name="home"></ion-icon>
-        <ion-label>{{vista.label}}</ion-label>
+        <ion-icon name="{{vista.icon}}" ></ion-icon>
+        <ion-label> {{vista.label}}</ion-label>
       </ion-item>
     </ion-list>
   </ion-content>
