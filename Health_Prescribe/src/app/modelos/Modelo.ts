@@ -4,38 +4,13 @@ export interface Login {
 }
 
 export interface AuthObject {
-  persona?: Personas;
+  persona?: Persona;
+  cliente?: Cliente;
+  farmaceutico?: Farmaceutico;
+  medico?: Medico;
 }
 
-export interface Medicamento {
-  id_medicamento: number;
-  nombre: string;
-  cantidad: number;
-  concentracion: string;
-  laboratorio: string;
-  proveedor: string;
-}
-export interface InserMedicamento {
-  nombre: string;
-  cantidad: number;
-  concentracion: string;
-  laboratorio: string;
-  proveedor: string;
-}
-export interface Usuarios {
-  id_usuario: number;
-  nombre_usuario: string;
-  contraseña: string;
-  tipo_usuario: string;
-  habilitado: boolean;
-}
-
-export interface Roles {
-  id_rol: number;
-  nombre: string;
-}
-
-export interface Personas {
+export interface Persona {
   id_persona: number;
   nombre: string;
   apellido: string;
@@ -44,48 +19,105 @@ export interface Personas {
   usuarios: Usuarios;
   roles: Roles;
 }
+
 export interface Cliente {
   id_cliente: number;
-  persona: Personas;
+  persona: Persona;
   telefono: string;
   habilitado: boolean;
   correo: string;
 }
 
-export interface Paciente {
-  id_paciente: number;
-  persona: Personas;
-  telefono: string;
-  huella_dactilar: string | null;
+export interface Farmaceutico {
+  id_farmaceutico: number;
+  persona: Persona;
   habilitado: boolean;
 }
 
 export interface Medico {
   id_medico: number;
-  persona: Personas;
-  especialidad: string;
+  persona: Persona;
+  especializacion: string;
   habilitado: boolean;
 }
 
-export interface Farmaceutico {
-  id_farmaceutico: number;
-  persona: Personas;
-  habilitado: boolean;
+export interface Proveedor {
+  id_proveedor:     number;
+  nombre_proveedor: string;
+}
+
+export interface Farmaco {
+  id_farmaco: number;
+  nombre_generico: string;
+  forma_farmaceutica: string;
+  inventario: number;
+  concentracion: string;
+  proveedor?: Proveedor;
+  bar_code?: string;
 }
 
 export interface Receta {
   id_receta: number;
-  paciente: Paciente;
   medico: Medico;
-  fecha: string;
-  habilitada: boolean;
+  paciente: Cliente;
+  codigo_receta: string;
+  estado: string;
+  farmaceutico: Farmaceutico;
+  receta_listado: RecetaListado[];
+  fecha_create: string;
+  fecha_entrega: string;
+  create_asistido: boolean;
 }
 
-export interface DetalleReceta {
-  id_detalle_receta: number;
+export interface RecetaListado {
+  id_receta_listado: number;
   receta: Receta;
-  medicamento: Medicamento;
-  cantidad: number | null;
-  indicaciones: string;
+  farmaco: Farmaco;
+  cantidad: number;
+  dosis: number;
+  aplicacion: string;
+  entregado?: boolean;
 }
 
+export interface Usuarios {
+  id_usuario: number;
+  persona: Persona;
+  usuario: string;
+  clave: string;
+  rol: number;
+}
+
+export interface RecetaDetalle {
+  id_receta_listado: number;
+  receta: Receta;
+  farmaco: Farmaco;
+  cantidad: number;
+  dosis: number;
+  aplicacion: string;
+}
+
+export interface RecetaCreate {
+  codigo_receta: string;
+  estado:        string;
+  farmaceutico:  number | null;
+  id_receta:     number;
+  medico:        number;
+  paciente:      number;
+  fecha_create: string;
+  fecha_entrega: string;
+  create_asistido: boolean;
+}
+
+export interface RecetaDetalleCreate {
+  aplicacion:        string;
+  cantidad:          number;
+  dosis:             number;
+  farmaco:           number;
+  id_receta_listado: number;
+  receta:            number;
+}
+
+export interface Proveedor {
+  id_proveedor:          number;
+  nombre_proveedor:        string;
+}
