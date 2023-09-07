@@ -33,11 +33,13 @@ class PacienteViewSet(viewsets.ModelViewSet):
 
 class MedicoViewSet(viewsets.ModelViewSet):
     queryset = Medico.objects.all()
+    print(queryset.query)
     permission_classes = [permissions.AllowAny]
     serializer_class = MedicoSerializer
 
 class FarmaceuticoViewSet(viewsets.ModelViewSet):
     queryset = Farmaceutico.objects.all()
+    print(queryset.query)
     permission_classes = [permissions.AllowAny]
     serializer_class = FarmaceuticoSerializer
 
@@ -60,7 +62,12 @@ class DetalleRecetaViewSet(viewsets.ModelViewSet):
     queryset = DetalleReceta.objects.all()
     permission_classes = [permissions.AllowAny]
     serializer_class = DetalleRecetaSerializer
-
+    def get_queryset(self):
+        queryset = DetalleReceta.objects.all()
+        id_receta = self.request.query_params.get('id_receta', None)
+        if id_receta is not None:
+            queryset = queryset.filter(receta__id_receta=id_receta)
+        return queryset
 class LoginViewSet(viewsets.ModelViewSet):
     serializer_class = LoginSerializer
     queryset = []
