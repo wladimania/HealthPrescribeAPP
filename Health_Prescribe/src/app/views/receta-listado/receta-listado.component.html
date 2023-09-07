@@ -1,0 +1,45 @@
+<ion-card>
+  <ion-card-header>
+    Lista de Recetas
+  </ion-card-header>
+  <ion-card-content>
+
+    <ion-card  *ngFor="let itemReceta of listaRecetas" (click)="verReceta(itemReceta)">
+      <ion-card-header>
+        Fecha: {{ itemReceta.fecha }}
+      </ion-card-header>
+      <ion-card-content>
+        <ion-list>
+          <ion-item>
+            <ion-label>Estado:</ion-label>
+            <ion-label>
+              <ion-badge color="{{getEstadoColor(itemReceta.habilitada) }}">
+                {{ getEstadoTexto(itemReceta.habilitada) }}
+              </ion-badge>
+            </ion-label>
+            </ion-item>
+            <ion-item *ngIf="!mostrarPaciente && itemReceta.medico && contarClaves(itemReceta.medico) > 0">
+              <ion-label>Médico:</ion-label>
+              <ion-label>{{ itemReceta.medico.persona.apellido + ' ' + itemReceta.medico.persona.nombre }}</ion-label>
+            </ion-item>
+            <ion-item *ngIf="!mostrarPaciente && itemReceta.medico && contarClaves(itemReceta.medico) > 0">
+              <ion-label>Género:</ion-label>
+              <ion-label>{{ itemReceta.medico.persona.genero}}</ion-label>
+            </ion-item >
+            <ion-item *ngIf="mostrarPaciente && itemReceta.paciente && contarClaves(itemReceta.paciente) > 0">
+              <ion-label>Paciente:</ion-label>
+              <ion-label>{{ itemReceta.paciente.persona.apellido + ' ' + itemReceta.paciente.persona.nombre }}</ion-label>
+            </ion-item>
+            <ion-item *ngIf="mostrarPaciente && itemReceta.paciente && contarClaves(itemReceta.paciente) > 0">
+              <ion-label>Género:</ion-label>
+              <ion-label>{{ itemReceta.paciente.persona.genero}}</ion-label>
+            </ion-item>
+        </ion-list>
+      </ion-card-content>
+    </ion-card>
+
+
+
+
+  </ion-card-content>
+</ion-card>

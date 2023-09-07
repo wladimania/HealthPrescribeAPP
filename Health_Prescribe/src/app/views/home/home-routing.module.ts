@@ -10,6 +10,7 @@ import {EntregarRecetaPage} from "../entregar-receta/entregar-receta.page";
 import {AgregarMedicamentoPage} from "../agregar-medicamento/agregar-medicamento.page";
 import {DetalleMedicamentoPage} from "../detalle-medicamento/detalle-medicamento.page";
 import {AdministracionCuentasPage} from "../administracion-cuentas/administracion-cuentas.page";
+import { RecetaListadoComponent } from '../receta-listado/receta-listado.component';
 
 const routes: Routes = [
   {
@@ -17,13 +18,25 @@ const routes: Routes = [
     component: HomePage,
     children: [
       {
+        path: 'listar-receta',
+        component: RecetaListadoComponent
+      },
+      {
         path: 'generar-receta',
         component: GenerarRecetaPage
       },
       {
-        path: 'mostrar-receta',
-        component: MostrarRecetaPage
+        path: 'paciente/receta-vista/:idReceta',
+        component: MostrarRecetaPage,
+        data: {
+          title: 'Receta Médica',
+          code: 'receta-view-paciente'
+        }
       },
+      // {
+      //   path: 'mostrar-receta',
+      //   component: MostrarRecetaPage
+      // },
       {
         path: 'inventario',
         component: InventarioPage
