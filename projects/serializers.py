@@ -106,6 +106,20 @@ class RecetaCreateSerializer(serializers.ModelSerializer):
         # Crear una nueva instancia de Receta y asociarla con el paciente y el médico
         receta = Receta.objects.create(paciente=paciente_instance, medico=medico_instance, **validated_data)
         return receta
+    def update(self, instance, validated_data):
+        # Actualiza los campos de la receta
+        instance.fecha = validated_data.get('fecha', instance.fecha)
+        instance.habilitada = validated_data.get('habilitada', instance.habilitada)
+
+        # Si se proporciona un nuevo paciente o médico, actualiza la relación
+        if 'paciente' in validated_data:
+            instance.paciente = validated_data['paciente']
+        if 'medico' in validated_data:
+            instance.medico = validated_data['medico']
+
+        # Guarda y retorna la instancia actualizada
+        instance.save()
+        return instance
 class DetalleRecetaSerializer(serializers.ModelSerializer):
     receta=RecetaSerializer()
     medicamento=MedicamentoSerializer()
