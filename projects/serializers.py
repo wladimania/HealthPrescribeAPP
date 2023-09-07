@@ -79,6 +79,15 @@ class RecetaSerializer(serializers.ModelSerializer):
     class Meta:
         model = Receta
         fields = '__all__'
+    def create(self, validated_data):
+        paciente_data = validated_data.pop('paciente')
+        medico_data = validated_data.pop('medico')
+        
+        paciente = Paciente.objects.get(id=paciente_data['id'])
+        medico = Medico.objects.get(id=medico_data['id'])
+
+        receta = Receta.objects.create(paciente=paciente, medico=medico, **validated_data)
+        return receta                
 
 class DetalleRecetaSerializer(serializers.ModelSerializer):
     receta=RecetaSerializer()

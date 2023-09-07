@@ -41,7 +41,7 @@ class Paciente(models.Model):
 
 class Medico(models.Model):
     id_medico = models.IntegerField(primary_key=True)
-    persona = models.ForeignKey('personas', models.DO_NOTHING, db_column='id_persona', blank=True, null=True, on_delete=models.CASCADE)
+    persona = models.ForeignKey('personas', models.DO_NOTHING, db_column='id_persona', blank=True, null=True)
     especialidad = models.CharField(max_length=100, blank=True)
     habilitado = models.BooleanField(default=True)
     class Meta:
@@ -83,6 +83,9 @@ class DetalleReceta(models.Model):
     medicamento = models.ForeignKey('medicamento', models.DO_NOTHING, db_column='medicamento_id', blank=True, null=True)
     cantidad = models.IntegerField(null=True)
     indicaciones = models.TextField(blank=True)
+    def get_receta_listado(self):
+        # devuelve una lista de los objetos relacionados
+        return list(self.receta_set.all())    
     class Meta:
         managed = False
         db_table = 'detallereceta'
