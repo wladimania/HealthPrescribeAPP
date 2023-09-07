@@ -16,7 +16,7 @@ export class FarmacoService {
   constructor(private http: HttpClient) { }
 
   getListaFarmacos(): Observable<any> {
-      return this.http.get(this.URL_SERVER + this.basic_Schema + 'farmacos/');
+      return this.http.get(this.URL_SERVER + this.basic_Schema + 'medicamento/');
   }
   createFarmaco(data: Farmaco): Observable<any> {
       return this.http.post(this.URL_SERVER + this.basic_Schema + 'farmacos/', data);

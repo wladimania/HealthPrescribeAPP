@@ -3,7 +3,9 @@
   </ion-toolbar>
 </ion-header>
 
-
+<ion-button (click)="volverAtras()" slot="fixed" class="back-button">
+  <ion-icon name="arrow-back"></ion-icon>
+</ion-button>
 
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
@@ -14,6 +16,8 @@
   <div class="breadcrumbs">
     <ion-icon name="home"></ion-icon>
     <a href="/app/home">Inicio</a>
+<!--    <ion-icon name="arrow-forward"></ion-icon>-->
+<!--    <a href="/app/home/listar-receta">Listar Recetas</a>-->
     <ion-icon name="arrow-forward"></ion-icon>
     <span>Visualizar Recetas</span>
   </div>
@@ -151,12 +155,6 @@
             <b>Indicaciones:</b>
             <div class="ion-text-center ion-align-items-center">{{ itemFarmaco.indicaciones }}</div>
           </ion-col>
-<!--          <ion-col *ngIf="esVistaFarmaceutico">-->
-<!--            <b>Estado:</b>-->
-<!--            <div class="ion-text-center ion-align-items-center">-->
-<!--              <ion-icon [name]="itemFarmaco.entregado ? 'checkmark-circle' : 'clock'" [color]="itemFarmaco.entregado ? 'success' : 'danger'"></ion-icon>-->
-<!--            </div>-->
-<!--          </ion-col>-->
         </ion-row>
       </ion-card-content>
     </ion-card>

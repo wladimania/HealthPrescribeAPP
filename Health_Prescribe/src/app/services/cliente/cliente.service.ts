@@ -15,6 +15,6 @@ export class ClienteService {
   constructor(private http: HttpClient) { }
 
   getListaClientes(): Observable<any> {
-      return this.http.get(this.URL_SERVER + this.basic_Schema + 'clientes/');
+      return this.http.get(this.URL_SERVER + this.basic_Schema + 'paciente/');
   }
 }

@@ -1,0 +1,190 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+  </ion-toolbar>
+</ion-header>
+
+<ion-button (click)="volverAtras()" slot="fixed" class="back-button">
+  <ion-icon name="arrow-back"></ion-icon>
+</ion-button>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+    </ion-toolbar>
+  </ion-header>
+  <div class="breadcrumbs">
+    <ion-icon name="home"></ion-icon>
+    <a href="/app/home">Inicio</a>
+    <!--    <ion-icon name="arrow-forward"></ion-icon>-->
+    <!--    <a href="/app/home/listar-receta">Listar Recetas</a>-->
+    <ion-icon name="arrow-forward"></ion-icon>
+    <span>Visualizar Recetas</span>
+  </div>
+  <ion-card>
+    <ion-card-header>
+      Registro de Receta Médica
+    </ion-card-header>
+    <ion-card-content>
+      <ion-row>
+        <ion-col class="field col-12 sm-12 md-12 xl-12" *ngIf="contarClaves(recetaEncabezado.paciente) === 0">
+
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-card>
+            <ion-card-header>
+              <ion-icon name="person"></ion-icon>Seleccione un Paciente</ion-card-header>
+            <ion-card-content>
+              <ion-grid class="p-fluid p-formgrid p-grid formgrid grid">
+                <ion-row *ngIf="contarClaves(recetaEncabezado.paciente) === 0">
+                  <ion-col class="field col-12 sm-12 md-12 xl-12">
+                    <ion-icon name="warning"></ion-icon>
+                    Primero seleccione un paciente
+                  </ion-col>
+                </ion-row>
+                <!-- Resto de tu contenido aquí -->
+                <ion-row>
+                  <ion-col class="field col-12 sm-12 md-12 xl-12">
+                    <ion-select
+                      id="cmbClientes"
+                      [(ngModel)]="recetaEncabezado.paciente" (ngModelChange)="cambioPac()"
+                      interface="popover"
+                    placeholder="Seleccione al paciente"
+                    >
+                    <ion-select-option *ngFor="let paciente of listaPacientes" [value]="paciente">
+                      {{ paciente.persona.apellido + ' ' + paciente.persona.nombre }}
+                    </ion-select-option>
+                    </ion-select>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+      <!-- Resto de tu contenido aquí -->
+      <ion-card>
+        <ion-card-header>
+          Agregar un producto
+        </ion-card-header>
+        <ion-card-content>
+          <ion-button (click)="showfarmacosModal()" expand="full" [disabled]="contarClaves(recetaEncabezado.paciente) === 0">
+            <ion-icon slot="start" name="search"></ion-icon>
+            Buscar un Fármaco
+          </ion-button>
+          <ion-row *ngIf="contarClaves(nuevoItemReceta) > 0">
+            <ion-col size="6">
+              <b>Nombre:</b>
+              <div class="ion-text-center ion-align-items-center">{{ nuevoItemReceta.medicamento.nombre }}</div>
+            </ion-col>
+            <ion-col size="6">
+              <b>Concentración:</b>
+              <div class="ion-text-center ion-align-items-center">{{ nuevoItemReceta.medicamento.concentracion }}</div>
+            </ion-col>
+            <ion-col size="6">
+              <b>Laboratorio:</b>
+              <div class="ion-text-center ion-align-items-center">{{ nuevoItemReceta.medicamento.laboratorio }}</div>
+            </ion-col>
+            <ion-col size="6">
+              <b>Proveedor:</b>
+              <div class="ion-text-center ion-align-items-center">{{ nuevoItemReceta.medicamento.proveedor }}</div>
+            </ion-col>
+            <ion-col size="6">
+              <b>Existencia:</b>
+              <div class="ion-text-center ion-align-items-center">{{ nuevoItemReceta.medicamento.cantidad }}</div>
+            </ion-col>
+            <ion-col size="4">
+              <ion-label><b>Cantidad:</b></ion-label>
+              <ion-input [(ngModel)]="nuevoItemReceta.cantidad" type="number" min="0" max="10"></ion-input>
+            </ion-col>
+            <ion-col size="8">
+              <ion-label><b>Indicaciones:</b></ion-label>
+              <ion-input [(ngModel)]="nuevoItemReceta.indicaciones" type="text" ></ion-input>
+            </ion-col>
+<!--            <ion-col size="12">-->
+<!--              <ion-label><b>Aplicación:</b></ion-label>-->
+<!--              <ion-textarea [(ngModel)]="nuevoItemReceta.aplicacion" rows="1" auto-grow></ion-textarea>-->
+<!--            </ion-col>-->
+            <ion-col size="12">
+              <ion-buttons class="ion-justify-content-end">
+                <ion-button (click)="clearTmpFarmaco()" color="warning">
+                  <ion-icon slot="start" name="close"></ion-icon>
+                  Confirmar
+                </ion-button>
+                <ion-button (click)="agregarTmpFarmaco()" color="success">
+                  <ion-icon slot="start" name="checkmark"></ion-icon>
+                  Cancelar
+                </ion-button>
+              </ion-buttons>
+            </ion-col>
+          </ion-row>
+        </ion-card-content>
+      </ion-card>
+    </ion-card-content>
+  </ion-card>
+  <!-- Resto de tu contenido aquí -->
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>
+        <ion-icon name="th-large"></ion-icon> Lista de Fármacos
+      </ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+<!--      <ion-grid>-->
+<!--        <ion-row>-->
+<!--          <ion-col>-->
+<!--            <div class="ion-text-center">Nombre</div>-->
+<!--          </ion-col>-->
+<!--          <ion-col>-->
+<!--            <div class="ion-text-center">Forma</div>-->
+<!--          </ion-col>-->
+<!--          <ion-col>-->
+<!--            <div class="ion-text-center">Concentración</div>-->
+<!--          </ion-col>-->
+<!--          <ion-col>-->
+<!--            <div class="ion-text-center">Cantidad</div>-->
+<!--          </ion-col>-->
+<!--          <ion-col>-->
+<!--            <div class="ion-text-center">Dosis</div>-->
+<!--          </ion-col>-->
+<!--          <ion-col size="5">-->
+<!--            <div class="ion-text-center">Aplicación</div>-->
+<!--          </ion-col>-->
+<!--                    <ion-col size="5">-->
+<!--                      <div class="ion-text-center">Aplicación</div>-->
+<!--                    </ion-col>-->
+<!--          <ion-col size="1"></ion-col>-->
+<!--        </ion-row>-->
+<!--      </ion-grid>-->
+      <ion-list>
+        <ion-item *ngFor="let itemFarmaco of recetaDetalle; let indice = index" class="item-separator">
+          <ion-label>
+            <b>Nombre:</b> {{ itemFarmaco.medicamento.nombre }} <br>
+            <b>Concentración:</b> {{ itemFarmaco.medicamento.concentracion }} <br>
+            <b>Cantidad:</b> {{ itemFarmaco.cantidad }} <br>
+            <b>Indicaciones:</b> {{ itemFarmaco.indicaciones }} <br>
+          </ion-label>
+          <ion-button slot="end" fill="clear" color="warning" (click)="removerFarmaco(indice)">
+            <ion-icon name="close"></ion-icon>
+          </ion-button>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+    <ion-footer>
+      <ion-toolbar>
+        <ion-buttons slot="end">
+          <ion-button (click)="clearReceta()" color="warning">
+            <ion-icon name="close"></ion-icon>
+            Cancelar
+          </ion-button>
+          <ion-button (click)="guardarReceta()" color="success" [disabled]="!(contarClaves(recetaEncabezado.paciente) > 0 && recetaDetalle.length > 0)">
+            <ion-icon name="save"></ion-icon>
+            Guardar Receta
+          </ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-footer>
+
+  </ion-card>
+</ion-content>
