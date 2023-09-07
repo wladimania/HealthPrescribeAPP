@@ -49,11 +49,13 @@ class PersonasSerializer(serializers.ModelSerializer):
 
 
 class PacienteSerializer(serializers.ModelSerializer):
+    persona = PersonasSerializer() 
     class Meta:
         model = Paciente
         fields = '__all__'
 
 class MedicoSerializer(serializers.ModelSerializer):
+    persona = PersonasSerializer() 
     class Meta:
         model = Medico
         fields = '__all__'
@@ -69,11 +71,16 @@ class MedicamentoSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class RecetaSerializer(serializers.ModelSerializer):
+    paciente = PacienteSerializer()  # Aquí se incluye el serializador del modelo Paciente
+    medico = MedicoSerializer()      # Aquí se incluye el serializador del modelo Medico
+
     class Meta:
         model = Receta
         fields = '__all__'
 
 class DetalleRecetaSerializer(serializers.ModelSerializer):
+    receta=RecetaSerializer()
+    medicamento=MedicamentoSerializer()
     class Meta:
         model = DetalleReceta
         fields = '__all__'
