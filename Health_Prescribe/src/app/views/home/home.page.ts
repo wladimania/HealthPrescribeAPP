@@ -29,7 +29,7 @@ export class HomePage {
         label: 'Médico',
         items: [
           {label: 'Registrar Receta', icon: 'create', routerLink: ['/generar-receta']},
-          {label: 'Mostrar Recetas', icon: 'document-text', routerLink: ['/mostrar-receta']},
+          {label: 'Mostrar Recetas', icon: 'document-text', routerLink: ['/listar-receta']},
 
         ]
       });
@@ -45,7 +45,7 @@ export class HomePage {
       this.model.push({
         label: 'Cliente',
         items: [
-          {label: 'Mostrar Recetas', icon: 'document-text', routerLink: ['/mostrar-receta']},
+          {label: 'Mostrar Recetas', icon: 'document-text', routerLink: ['/listar-receta']},
         ]
       });
     } else {

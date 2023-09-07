@@ -41,7 +41,7 @@ class Paciente(models.Model):
 
 class Medico(models.Model):
     id_medico = models.IntegerField(primary_key=True)
-    persona = models.ForeignKey('personas', models.DO_NOTHING, db_column='id_persona', blank=True, null=True, on_delete=models.CASCADE)
+    persona = models.ForeignKey('personas', models.DO_NOTHING, db_column='id_persona', blank=True, null=True)
     especialidad = models.CharField(max_length=100, blank=True)
     habilitado = models.BooleanField(default=True)
     class Meta:

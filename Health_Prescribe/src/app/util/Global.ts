@@ -1,9 +1,10 @@
 import {DatePipe} from "@angular/common";
 import {ToastController} from "@ionic/angular";
+import { environment } from "src/environments/environment";
 
 export class Global {
 
-  public static urlServer = 'http://127.0.0.1:8000/';
+  public static urlServer = environment.urlServer;
   /*
   *  variables de los roles
   * */

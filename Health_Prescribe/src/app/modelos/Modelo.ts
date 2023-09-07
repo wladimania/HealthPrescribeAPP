@@ -1,7 +1,3 @@
-export interface Login {
-  nombre_usuario: string;
-  clave: string;
-}
 
 export interface AuthObject {
   persona?: Persona;
@@ -10,8 +6,37 @@ export interface AuthObject {
   medico?: Medico;
 }
 
+export interface Medicamento {
+  id_medicamento: number;
+  nombre: string;
+  cantidad: number;
+  concentracion: string;
+  laboratorio: string;
+  proveedor: string;
+}
+export interface InserMedicamento {
+  nombre: string;
+  cantidad: number;
+  concentracion: string;
+  laboratorio: string;
+  proveedor: string;
+}
+export interface Usuarios {
+  id_usuario: number;
+  nombre_usuario: string;
+  contraseña: string;
+  tipo_usuario: string;
+  habilitado: boolean;
+}
+
+export interface Roles {
+  id_rol: number;
+  nombre: string;
+}
+
 export interface Persona {
   id_persona: number;
+  cedula?: string;
   nombre: string;
   apellido: string;
   edad: number | null;
@@ -27,6 +52,45 @@ export interface Cliente {
   habilitado: boolean;
   correo: string;
 }
+
+export interface Paciente {
+  id_paciente: number;
+  persona: Persona;
+  telefono: string;
+  huella_dactilar: string | null;
+  habilitado: boolean;
+}
+
+export interface Medico {
+  id_medico: number;
+  persona: Persona;
+  especialidad: string;
+  habilitado: boolean;
+}
+
+export interface Farmaceutico {
+  id_farmaceutico: number;
+  persona: Persona;
+  habilitado: boolean;
+}
+
+
+export interface DetalleReceta {
+  id_detalle_receta: number;
+  receta: Receta;
+  medicamento: Medicamento;
+  cantidad: number | null;
+  indicaciones: string;
+}
+
+
+
+
+export interface Login {
+  nombre_usuario: string;
+  clave: string;
+}
+
 
 export interface Farmaceutico {
   id_farmaceutico: number;
@@ -61,12 +125,13 @@ export interface Receta {
   medico: Medico;
   paciente: Cliente;
   codigo_receta: string;
-  estado: string;
+  estado: string; // revisar
+  habilitada: boolean;
   farmaceutico: Farmaceutico;
   receta_listado: RecetaListado[];
-  fecha_create: string;
-  fecha_entrega: string;
-  create_asistido: boolean;
+  fecha: string;
+  // fecha_entrega: string;
+  // create_asistido: boolean;
 }
 
 export interface RecetaListado {
@@ -99,6 +164,7 @@ export interface RecetaDetalle {
 export interface RecetaCreate {
   codigo_receta: string;
   estado:        string;
+  habilitada:    boolean;
   farmaceutico:  number | null;
   id_receta:     number;
   medico:        number;

@@ -14,7 +14,7 @@ import {DetalleMedicamentoPage} from "../detalle-medicamento/detalle-medicamento
 import {EditarMedicamentoPage} from "../editar-medicamento/editar-medicamento.page";
 import {DetalleRecetaPage} from "../detalle-receta/detalle-receta.page";
 import {AdministracionCuentasPage} from "../administracion-cuentas/administracion-cuentas.page";
-
+import {RecetaListadoComponent} from "../receta-listado/receta-listado.component";
 
 @NgModule({
   imports: [
@@ -25,7 +25,7 @@ import {AdministracionCuentasPage} from "../administracion-cuentas/administracio
   ],
   declarations: [HomePage, GenerarRecetaPage, MostrarRecetaPage, InventarioPage, EntregarRecetaPage,
     AgregarMedicamentoPage, DetalleMedicamentoPage, DetalleMedicamentoPage, EditarMedicamentoPage,
-    DetalleRecetaPage, AdministracionCuentasPage]
+    DetalleRecetaPage, AdministracionCuentasPage, RecetaListadoComponent]
 })
 export class HomePageModule {
 }
