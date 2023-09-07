@@ -13,7 +13,8 @@ from .serializers import (
     RecetaSerializer,
     DetalleRecetaSerializer,
     LoginSerializer,
-    serializers
+    serializers,
+    RecetaCreateSerializer
 )
 
 class UsuariosViewSet(viewsets.ModelViewSet):
@@ -57,6 +58,11 @@ class RecetaViewSet(viewsets.ModelViewSet):
     queryset = Receta.objects.all()
     permission_classes = [permissions.AllowAny]
     serializer_class = RecetaSerializer
+
+class RecetaCreateViewSet(viewsets.ModelViewSet):
+    queryset = Receta.objects.all()
+    permission_classes = [permissions.AllowAny]
+    serializer_class = RecetaCreateSerializer    
 
 class DetalleRecetaViewSet(viewsets.ModelViewSet):
     queryset = DetalleReceta.objects.all()

@@ -80,15 +80,32 @@ class RecetaSerializer(serializers.ModelSerializer):
         model = Receta
         fields = '__all__'
     def create(self, validated_data):
+        # Deserializar la información del paciente y el médico
         paciente_data = validated_data.pop('paciente')
         medico_data = validated_data.pop('medico')
         
-        paciente = Paciente.objects.get(id=paciente_data['id'])
-        medico = Medico.objects.get(id=medico_data['id'])
+        # Obtener las instancias del paciente y el médico basándose en sus IDs
+        paciente_instance = Paciente.objects.get(id=paciente_data['id_paciente'])
+        medico_instance = Medico.objects.get(id=medico_data['id_medico'])
 
-        receta = Receta.objects.create(paciente=paciente, medico=medico, **validated_data)
-        return receta                
+        # Crear una nueva instancia de Receta y asociarla con el paciente y el médico
+        receta = Receta.objects.create(paciente=paciente_instance, medico=medico_instance, **validated_data)
+        return receta      
+class RecetaCreateSerializer(serializers.ModelSerializer):
+    paciente = serializers.PrimaryKeyRelatedField(queryset=Paciente.objects.all())
+    medico = serializers.PrimaryKeyRelatedField(queryset=Medico.objects.all())
 
+    class Meta:
+        model = Receta
+        fields = '__all__'
+    def create(self, validated_data):
+        # Deserializar la información del paciente y el médico
+        paciente_instance = validated_data.pop('paciente')
+        medico_instance = validated_data.pop('medico')
+        
+        # Crear una nueva instancia de Receta y asociarla con el paciente y el médico
+        receta = Receta.objects.create(paciente=paciente_instance, medico=medico_instance, **validated_data)
+        return receta
 class DetalleRecetaSerializer(serializers.ModelSerializer):
     receta=RecetaSerializer()
     medicamento=MedicamentoSerializer()

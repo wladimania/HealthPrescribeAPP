@@ -9,7 +9,8 @@ from .api import (
     MedicamentoViewSet,
     RecetaViewSet,
     DetalleRecetaViewSet,
-    LoginViewSet
+    LoginViewSet,
+    RecetaCreateViewSet
 )
 
 router = routers.DefaultRouter()
@@ -22,6 +23,7 @@ router.register('api/farmaceutico', FarmaceuticoViewSet, 'farmaceutico-list')
 router.register('api/roles', RolesViewSet, 'roles-list')
 router.register('api/medicamento', MedicamentoViewSet, 'medicamento-list')
 router.register('api/receta', RecetaViewSet, 'receta-list')
+router.register('api/recetaCreate', RecetaCreateViewSet, 'recetaCreate-list')
 router.register('api/detallereceta', DetalleRecetaViewSet, 'detallereceta-list')
 
 urlpatterns = router.urls
