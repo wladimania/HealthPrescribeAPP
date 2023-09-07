@@ -61,9 +61,11 @@ class MedicoSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class FarmaceuticoSerializer(serializers.ModelSerializer):
+    persona = PersonasSerializer()
     class Meta:
         model = Farmaceutico
         fields = '__all__'
+
 
 class MedicamentoSerializer(serializers.ModelSerializer):
     class Meta:
