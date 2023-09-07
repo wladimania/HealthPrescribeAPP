@@ -113,6 +113,18 @@ class DetalleRecetaSerializer(serializers.ModelSerializer):
         model = DetalleReceta
         fields = '__all__'
 
+class DetalleRecetaCreateSerializer(serializers.ModelSerializer):
+    medicamento = serializers.PrimaryKeyRelatedField(queryset=Medicamento.objects.all())
+
+    class Meta:
+        model = DetalleReceta
+        fields = '__all__'
+    
+    def create(self, validated_data):
+        medicamento_instance = validated_data.pop('medicamento')
+        detalle = DetalleReceta.objects.create(medicamento=medicamento_instance, **validated_data)
+        return detalle
+
 class LoginSerializer(serializers.Serializer):
     nombre_usuario = serializers.CharField()
     clave = serializers.CharField()

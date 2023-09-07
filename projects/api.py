@@ -14,7 +14,9 @@ from .serializers import (
     DetalleRecetaSerializer,
     LoginSerializer,
     serializers,
-    RecetaCreateSerializer
+    RecetaCreateSerializer,
+    DetalleRecetaSerializer,
+    DetalleRecetaCreateSerializer
 )
 
 class UsuariosViewSet(viewsets.ModelViewSet):
@@ -74,6 +76,17 @@ class DetalleRecetaViewSet(viewsets.ModelViewSet):
         if id_receta is not None:
             queryset = queryset.filter(receta__id_receta=id_receta)
         return queryset
+
+class DetalleRecetaCreateViewSet(viewsets.ModelViewSet):
+    queryset = DetalleReceta.objects.all()
+    serializer_class = DetalleRecetaCreateSerializer
+
+    def create(self, request, *args, **kwargs):
+        serializer = DetalleRecetaCreateSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)        
 class LoginViewSet(viewsets.ModelViewSet):
     serializer_class = LoginSerializer
     queryset = []
