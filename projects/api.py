@@ -107,41 +107,47 @@ class LoginViewSet(viewsets.ModelViewSet):
             raise serializers.ValidationError('Contraseña incorrecta.')
 
         try:
-            persona = Personas.objects.get(usuarios=usuario)  # Corrección aquí
+            persona = Personas.objects.get(usuarios=usuario)
         except Personas.DoesNotExist:
             raise serializers.ValidationError('No se encontraron datos de la persona asociada al usuario.')
 
-        rol = persona.roles.id_rol
         persona_serializer = PersonasSerializer(persona)
-
-        role_handlers = {
-            1: self.handle_farmaceutico,
-            2: self.handle_medico,
-            3: self.handle_cliente
-        }
-
-        if rol in role_handlers:
-            return role_handlers[rol](persona_serializer)
+        print("Persona obtenida:", persona)
+        # Intentar encontrar el rol de la persona
+        if Medico.objects.filter(persona=persona_serializer.instance).exists():
+            return self.handle_medico(persona_serializer)
+            print(Farmaceutico.objects.filter(persona=persona_serializer.instance).query)
+        elif Farmaceutico.objects.filter(persona=persona_serializer.instance).exists():
+            return self.handle_farmaceutico(persona_serializer)
+            print(Farmaceutico.objects.filter(persona=persona_serializer.instance).query)
+        elif Paciente.objects.filter(persona=persona_serializer.instance).exists():  # Asumo que la tabla se llama Cliente
+            return self.handle_paciente(persona_serializer)
         else:
-            return Response(persona_serializer.data, status=status.HTTP_200_OK)
-
-    def handle_farmaceutico(self, persona_serializer):
-        farmaceutico = Farmaceutico.objects.get(personas=persona_serializer.instance)  # Corrección aquí
-        farmaceutico_serializer = FarmaceuticoSerializer(farmaceutico)
-        return Response({
-            'persona': persona_serializer.data,
-            'farmaceutico': farmaceutico_serializer.data
-        }, status=status.HTTP_200_OK)
+            return Response({'error': 'El usuario no tiene un rol asignado.'}, status=status.HTTP_404_NOT_FOUND)
 
     def handle_medico(self, persona_serializer):
-        medico = Medico.objects.get(personas=persona_serializer.instance)  # Corrección aquí
+        medico = Medico.objects.get(persona=persona_serializer.instance)
         medico_serializer = MedicoSerializer(medico)
         return Response({
             'persona': persona_serializer.data,
-            'medico': medico_serializer.data
+            'medico': medico_serializer.data,
+            'id_medico': medico.id_medico
         }, status=status.HTTP_200_OK)
 
-    def handle_cliente(self, persona_serializer):
+    def handle_farmaceutico(self, persona_serializer):
+        farmaceutico_obj = Farmaceutico.objects.get(persona=persona_serializer.instance)
+        farmaceutico_serializer = FarmaceuticoSerializer(farmaceutico_obj)
         return Response({
-            'persona': persona_serializer.data
+            'persona': persona_serializer.data,
+            'farmaceutico': farmaceutico_serializer.data,
+            'id_farmaceutico': farmaceutico.id_farmaceutico
+        }, status=status.HTTP_200_OK)
+
+    def handle_paciente(self, persona_serializer):
+        paciente_obj = Paciente.objects.get(persona=persona_serializer.instance)
+        paciente_serializer = PacienteSerializer(paciente_obj)
+        return Response({
+            'persona': persona_serializer.data,
+            'paciente': paciente_serializer.data,
+            'id_paciente': paciente_obj.id_paciente  # acceder al objeto del modelo
         }, status=status.HTTP_200_OK)
