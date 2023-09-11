@@ -69,16 +69,16 @@ export class RecetaListadoComponent implements OnInit {
         next: (data: Receta[]) => {
           console.log('getListaRecetas ', data);
           const soymedico = this.accountService.isMedico();
-          // this.listaRecetas = data;
-          this.listaRecetas = [];
-          for (const itemReceta of data) {
-            if (soymedico && itemReceta.medico.id_medico === this.dataUser.medico?.id_medico) {
-              this.listaRecetas.push(itemReceta);
-            }
-            if (!soymedico && itemReceta.paciente.id_cliente === this.dataUser.cliente?.id_cliente) {
-              this.listaRecetas.push(itemReceta);
-            }
-          }
+          this.listaRecetas = data;
+          // this.listaRecetas = [];
+          // for (const itemReceta of data) {
+          //   if (soymedico && itemReceta.medico.id_medico === this.dataUser.medico?.id_medico) {
+          //     this.listaRecetas.push(itemReceta);
+          //   }
+          //   if (!soymedico && itemReceta.paciente.id_paciente === this.dataUser.cliente?.id_cliente) {
+          //     this.listaRecetas.push(itemReceta);
+          //   }
+          // }
         },
         error: (error: any) => {
           console.log('ERROR getListaRecetas: ', error);
@@ -126,4 +126,7 @@ export class RecetaListadoComponent implements OnInit {
     return val? 'Habilitado' : 'Inactivo';
   }
 
+  volverAtras() {
+    history.back();
+  }
 }

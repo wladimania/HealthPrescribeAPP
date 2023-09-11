@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { RecetaCreate, RecetaDetalleCreate } from 'src/app/modelos/Modelo';
+import {Receta, RecetaCreate, RecetaDetalleCreate} from 'src/app/modelos/Modelo';
 import { Global } from 'src/app/util/Global';
 
 @Injectable({
@@ -23,7 +23,7 @@ export class RecetaService {
   }
 
   createReceta(recetaItem: RecetaCreate): Observable<any> {
-      return this.http.post(this.URL_SERVER + this.basic_Schema + 'Create_Receta/', recetaItem);
+      return this.http.post(this.URL_SERVER + this.basic_Schema + 'recetaCreate/', recetaItem);
   }
 
   updateReceta(idReceta: number, recetaItem: RecetaCreate): Observable<any> {
@@ -31,7 +31,7 @@ export class RecetaService {
   }
 
   createRecetaDetalle(recetaItem: RecetaDetalleCreate): Observable<any> {
-      return this.http.post(this.URL_SERVER + this.basic_Schema + 'CrearRecetaListado/', recetaItem);
+      return this.http.post(this.URL_SERVER + this.basic_Schema + 'detallerecetaCreate/', recetaItem);
   }
 
   buscarPorCodigoReceta(codigoReceta: string): Observable<any> {

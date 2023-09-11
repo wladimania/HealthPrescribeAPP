@@ -11,6 +11,8 @@ import {AgregarMedicamentoPage} from "../agregar-medicamento/agregar-medicamento
 import {DetalleMedicamentoPage} from "../detalle-medicamento/detalle-medicamento.page";
 import {AdministracionCuentasPage} from "../administracion-cuentas/administracion-cuentas.page";
 import { RecetaListadoComponent } from '../receta-listado/receta-listado.component';
+import {FarmacosDialogComponent} from "../farmacos-dialog/farmacos-dialog.component";
+import {RecetaCreateComponent} from "../receta-create/receta-create.component";
 
 const routes: Routes = [
   {
@@ -23,7 +25,7 @@ const routes: Routes = [
       },
       {
         path: 'generar-receta',
-        component: GenerarRecetaPage
+        component: RecetaCreateComponent
       },
       {
         path: 'paciente/receta-vista/:idReceta',
@@ -39,7 +41,7 @@ const routes: Routes = [
       // },
       {
         path: 'inventario',
-        component: InventarioPage
+        component: FarmacosDialogComponent
       },
       {
         path: 'entregar-receta',

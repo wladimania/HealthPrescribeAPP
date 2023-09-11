@@ -100,3 +100,16 @@ a {
 a:hover {
   text-decoration: underline;
 }
+
+.back-button {
+  position: absolute;
+  top: 50px; /* Ajusta la posición vertical según tus necesidades */
+  right: 10px; /* Ajusta la posición horizontal según tus necesidades */
+  z-index: 999; /* Asegura que el botón esté en la parte superior */
+}
+
+.item-separator {
+  border-bottom: 1px solid #ccc; /* Color y estilo de la línea */
+  padding-bottom: 8px; /* Espacio entre elementos */
+  margin-bottom: 8px; /* Espacio entre elementos */
+}

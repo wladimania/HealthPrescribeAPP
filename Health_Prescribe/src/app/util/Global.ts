@@ -61,7 +61,7 @@ export class Global {
       } else {
         tmpDate = fecha;
       }
-      return datePipe.transform(tmpDate, 'yyy-MM-dd hh:mm:ss')!;
+      return datePipe.transform(tmpDate, 'yyy-MM-dd')!;
     }
   }
 

@@ -1,10 +1,28 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+  </ion-toolbar>
+</ion-header>
+
+<ion-button (click)="volverAtras()" slot="fixed" class="back-button">
+  <ion-icon name="arrow-back"></ion-icon>
+</ion-button>
+
+<ion-content [fullscreen]="true">
+  <div class="breadcrumbs">
+    <ion-icon name="home"></ion-icon>
+    <a href="/app/home">Inicio</a>
+    <ion-icon name="arrow-forward"></ion-icon>
+    <span>Listar Recetas</span>
+  </div>
+
+
 <ion-card>
   <ion-card-header>
     Lista de Recetas
   </ion-card-header>
   <ion-card-content>
 
-    <ion-card  *ngFor="let itemReceta of listaRecetas" (click)="verReceta(itemReceta)">
+    <ion-card  *ngFor="let itemReceta of listaRecetas" (click)="verReceta(itemReceta)"  class="item-separator">
       <ion-card-header>
         Fecha: {{ itemReceta.fecha }}
       </ion-card-header>
@@ -43,3 +61,4 @@
 
   </ion-card-content>
 </ion-card>
+</ion-content>
